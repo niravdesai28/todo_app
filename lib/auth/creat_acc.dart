@@ -30,151 +30,153 @@ class _CreateAccState extends State<CreateAcc> {
         backgroundColor: Colors.blue, 
       ), 
       body: Form( 
-        key: _formKey, 
-        child: Column( 
-          mainAxisAlignment: MainAxisAlignment.start, 
-          crossAxisAlignment: CrossAxisAlignment.start, 
-          children: [ 
-            Text('Email'), 
-            Container( 
-              padding: EdgeInsets.symmetric(horizontal: 15), 
-              decoration: BoxDecoration( 
-                color: Colors.white, 
-                borderRadius: BorderRadius.circular(20), 
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column( 
+            mainAxisAlignment: MainAxisAlignment.start, 
+            crossAxisAlignment: CrossAxisAlignment.start, 
+            children: [ 
+              Text('Email'), 
+              Container( 
+                padding: EdgeInsets.symmetric(horizontal: 15), 
+                decoration: BoxDecoration( 
+                  color: Colors.white, 
+                  borderRadius: BorderRadius.circular(20), 
+                ), 
+                child: TextFormField( 
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                    },
+                  controller: _EmailController, 
+                  decoration: InputDecoration( 
+                      contentPadding: EdgeInsets.all(0), 
+                      border: InputBorder.none, 
+                      errorText: _validate ? 'Value Cant be empty' : null, 
+                      hintText: 'Email', 
+                      hintStyle: TextStyle(color: tdGrey), 
+                      prefixIconConstraints: 
+                          BoxConstraints(maxHeight: 20, minWidth: 25)), 
+                ), 
               ), 
-              child: TextFormField( 
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                  },
-                controller: _EmailController, 
-                decoration: InputDecoration( 
-                    contentPadding: EdgeInsets.all(0), 
-                    border: InputBorder.none, 
-                    errorText: _validate ? 'Value Cant be empty' : null, 
-                    hintText: 'Email', 
-                    hintStyle: TextStyle(color: tdGrey), 
-                    prefixIconConstraints: 
-                        BoxConstraints(maxHeight: 20, minWidth: 25)), 
+              SizedBox( 
+                height: 15, 
               ), 
-            ), 
-            SizedBox( 
-              height: 15, 
-            ), 
-            Text('Phone No'), 
-            Container( 
-              padding: EdgeInsets.symmetric(horizontal: 15), 
-              decoration: BoxDecoration( 
-                color: Colors.white, 
-                borderRadius: BorderRadius.circular(20), 
-              ), 
-              child: TextFormField(
-                validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-                return null;
-              }, 
-                            controller: _PhoneController, 
-                decoration: InputDecoration( 
-                    contentPadding: EdgeInsets.all(0), 
-                    border: InputBorder.none, 
-                    hintText: 'Enter Phone No', 
-                    hintStyle: TextStyle(color: tdGrey), 
-                    prefixIconConstraints: 
-                        BoxConstraints(maxHeight: 20, minWidth: 25)), 
-              ), 
-            ), 
-            SizedBox( 
-              height: 15, 
-            ), 
-            Text('Create Password'), 
-            Container( 
-              padding: EdgeInsets.symmetric(horizontal: 15), 
-              decoration: BoxDecoration( 
-                color: Colors.white, 
-                borderRadius: BorderRadius.circular(20), 
-              ), 
-              child: TextFormField(
-                validator: (value) {
+              Text('Phone No'), 
+              Container( 
+                padding: EdgeInsets.symmetric(horizontal: 15), 
+                decoration: BoxDecoration( 
+                  color: Colors.white, 
+                  borderRadius: BorderRadius.circular(20), 
+                ), 
+                child: TextFormField(
+                  validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some text';
                   }
                   return null;
                 }, 
-                controller: _CreatepassController, 
-                decoration: InputDecoration( 
-                    contentPadding: EdgeInsets.all(0), 
-                    border: InputBorder.none, 
-                    hintText: 'Enter Password', 
-                    hintStyle: TextStyle(color: tdGrey), 
-                    prefixIconConstraints: 
-                        BoxConstraints(maxHeight: 20, minWidth: 25)), 
+                              controller: _PhoneController, 
+                  decoration: InputDecoration( 
+                      contentPadding: EdgeInsets.all(0), 
+                      border: InputBorder.none, 
+                      hintText: 'Enter Phone No', 
+                      hintStyle: TextStyle(color: tdGrey), 
+                      prefixIconConstraints: 
+                          BoxConstraints(maxHeight: 20, minWidth: 25)), 
+                ), 
               ), 
-            ), 
-            SizedBox( 
-              height: 15, 
-            ), 
-            Text('Confirm password'), 
-            Container( 
-              padding: EdgeInsets.symmetric(horizontal: 15), 
-              decoration: BoxDecoration( 
-                color: Colors.white, 
-                borderRadius: BorderRadius.circular(20), 
+              SizedBox( 
+                height: 15, 
               ), 
-              child: TextFormField(
-                validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            }, 
-                controller: _ConfirmpassController, 
-                decoration: InputDecoration(contentPadding: EdgeInsets.all(0), 
-                    border: InputBorder.none, 
-                    hintText: 'Confirm Password', 
-                    hintStyle: TextStyle(color: tdGrey), 
-                    prefixIconConstraints: 
-                        BoxConstraints(maxHeight: 20, minWidth: 25)), 
+              Text('Create Password'), 
+              Container( 
+                padding: EdgeInsets.symmetric(horizontal: 15), 
+                decoration: BoxDecoration( 
+                  color: Colors.white, 
+                  borderRadius: BorderRadius.circular(20), 
+                ), 
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  }, 
+                  controller: _CreatepassController, 
+                  decoration: InputDecoration( 
+                      contentPadding: EdgeInsets.all(0), 
+                      border: InputBorder.none, 
+                      hintText: 'Enter Password', 
+                      hintStyle: TextStyle(color: tdGrey), 
+                      prefixIconConstraints: 
+                          BoxConstraints(maxHeight: 20, minWidth: 25)), 
+                ), 
               ), 
-            ), 
-            SizedBox( 
-              height: 15, 
-            ), 
-            Align( 
-                alignment: Alignment.center, 
-                child: ElevatedButton( 
-                    onPressed: () async {
-                       if (_formKey.currentState!.validate()) {
-    
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //   const SnackBar(content: Text('Processing Data')),
-                          // );
-                              Navigator.pushReplacement( 
-                          context, 
-                          MaterialPageRoute( 
-                              builder: (context) => LoginScreen()
-                              )
-                              ); 
-                        } 
-                      final SharedPreferences prefs = 
-                          await SharedPreferences.getInstance(); 
-                      prefs.setString('email', _EmailController.text); 
-                      prefs.setString('phoneno', _PhoneController.text); 
-                      prefs.setString('createpass', _CreatepassController.text); 
-                      prefs.setString( 
-                          'confirmpas', _ConfirmpassController.text); 
-                      // Navigator.pushReplacement( 
-                      //     context, 
-                      //     MaterialPageRoute( 
-                      //         builder: (context) => LoginScreen()
-                      //         )
-                      //         ); 
-                    }, 
-                    child: Text("Create Account"))) 
-          ], 
+              SizedBox( 
+                height: 15, 
+              ), 
+              Text('Confirm password'), 
+              Container( 
+                padding: EdgeInsets.symmetric(horizontal: 15), 
+                decoration: BoxDecoration( 
+                  color: Colors.white, 
+                  borderRadius: BorderRadius.circular(20), 
+                ), 
+                child: TextFormField(
+                  validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              }, 
+                  controller: _ConfirmpassController, 
+                  decoration: InputDecoration(contentPadding: EdgeInsets.all(0), 
+                      border: InputBorder.none, 
+                      hintText: 'Confirm Password', 
+                      hintStyle: TextStyle(color: tdGrey), 
+                      prefixIconConstraints: 
+                          BoxConstraints(maxHeight: 20, minWidth: 25)), 
+                ), 
+              ), 
+              SizedBox( 
+                height: 15, 
+              ), 
+              Align( 
+                  alignment: Alignment.center, 
+                  child: ElevatedButton( 
+                      onPressed: () async {
+                         if (_formKey.currentState!.validate()) {
+              
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   const SnackBar(content: Text('Processing Data')),
+                            // );
+                                Navigator.pushReplacement( 
+                            context, 
+                            MaterialPageRoute( 
+                                builder: (context) => LoginScreen()
+                                )
+                                ); 
+                          } 
+                        final SharedPreferences prefs = 
+                            await SharedPreferences.getInstance(); 
+                        prefs.setString('email', _EmailController.text); 
+                        prefs.setString('phoneno', _PhoneController.text); 
+                        prefs.setString('createpass', _CreatepassController.text); 
+                        prefs.setString( 
+                            'confirmpas', _ConfirmpassController.text); 
+                        // Navigator.pushReplacement( 
+                        //     context, 
+                        //     MaterialPageRoute( 
+                        //         builder: (context) => LoginScreen()
+                        //         )
+                        //         ); 
+                      }, 
+                      child: Text("Create Account"))) 
+            ], 
+          ),
         ), 
       ), 
     ); 
