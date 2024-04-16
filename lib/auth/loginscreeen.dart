@@ -9,7 +9,7 @@ class LoginScreen extends StatefulWidget {
   @override 
   State<LoginScreen> createState() => _LoginScreenState(); 
 } 
- 
+final _formKey = GlobalKey<FormState >(); 
 final _EmailController = TextEditingController(); 
 final _passwordController = TextEditingController(); 
  
@@ -101,12 +101,17 @@ class _LoginScreenState extends State<LoginScreen> {
           Align( 
             alignment: Alignment.center, 
             child: ElevatedButton( 
-              onPressed: () { 
-                if (_EmailController.text == Email && 
-                    _passwordController.text == Password) { 
-                  Navigator.push( 
-                      context, MaterialPageRoute(builder: (context) => Home())); 
-                } 
+              onPressed:() { 
+                if (_formKey.currentState!.validate()) {
+    
+                       
+                              Navigator.pushReplacement( 
+                          context, 
+                          MaterialPageRoute( 
+                              builder: (context) => LoginScreen()
+                              )
+                              ); 
+                }
               }, 
               child: Text("Create Account"), 
             ), 
