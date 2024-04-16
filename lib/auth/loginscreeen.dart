@@ -54,7 +54,13 @@ class _LoginScreenState extends State<LoginScreen> {
               color: Colors.white, 
               borderRadius: BorderRadius.circular(20), 
             ), 
-            child: TextField( 
+            child: TextFormField(
+              validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter email';
+                  }
+                  return null;
+                }, 
               controller: _EmailController, 
               decoration: InputDecoration( 
                   contentPadding: EdgeInsets.all(0), 
@@ -75,7 +81,13 @@ class _LoginScreenState extends State<LoginScreen> {
               color: Colors.white, 
               borderRadius: BorderRadius.circular(20), 
             ), 
-            child: TextField( 
+            child: TextFormField(
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              }, 
               controller: _passwordController, 
               decoration: InputDecoration( 
                   contentPadding: EdgeInsets.all(0), 

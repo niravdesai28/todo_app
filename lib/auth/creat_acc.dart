@@ -42,7 +42,13 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white, 
                 borderRadius: BorderRadius.circular(20), 
               ), 
-              child: TextField( 
+              child: TextFormField( 
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                  },
                 controller: _EmailController, 
                 decoration: InputDecoration( 
                     contentPadding: EdgeInsets.all(0), 
@@ -64,8 +70,14 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white, 
                 borderRadius: BorderRadius.circular(20), 
               ), 
-              child: TextField( 
-                controller: _PhoneController, 
+              child: TextFormField(
+                validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              }, 
+                            controller: _PhoneController, 
                 decoration: InputDecoration( 
                     contentPadding: EdgeInsets.all(0), 
                     border: InputBorder.none, 
@@ -85,7 +97,13 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white, 
                 borderRadius: BorderRadius.circular(20), 
               ), 
-              child: TextField( 
+              child: TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                }, 
                 controller: _CreatepassController, 
                 decoration: InputDecoration( 
                     contentPadding: EdgeInsets.all(0), 
@@ -106,7 +124,13 @@ class _CreateAccState extends State<CreateAcc> {
                 color: Colors.white, 
                 borderRadius: BorderRadius.circular(20), 
               ), 
-              child: TextField( 
+              child: TextFormField(
+                validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            }, 
                 controller: _ConfirmpassController, 
                 decoration: InputDecoration(contentPadding: EdgeInsets.all(0), 
                     border: InputBorder.none, 
@@ -122,7 +146,19 @@ class _CreateAccState extends State<CreateAcc> {
             Align( 
                 alignment: Alignment.center, 
                 child: ElevatedButton( 
-                    onPressed: () async { 
+                    onPressed: () async {
+                       if (_formKey.currentState!.validate()) {
+    
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   const SnackBar(content: Text('Processing Data')),
+                          // );
+                              Navigator.pushReplacement( 
+                          context, 
+                          MaterialPageRoute( 
+                              builder: (context) => LoginScreen()
+                              )
+                              ); 
+                        } 
                       final SharedPreferences prefs = 
                           await SharedPreferences.getInstance(); 
                       prefs.setString('email', _EmailController.text); 
@@ -130,12 +166,12 @@ class _CreateAccState extends State<CreateAcc> {
                       prefs.setString('createpass', _CreatepassController.text); 
                       prefs.setString( 
                           'confirmpas', _ConfirmpassController.text); 
-                      Navigator.pushReplacement( 
-                          context, 
-                          MaterialPageRoute( 
-                              builder: (context) => LoginScreen()
-                              )
-                              ); 
+                      // Navigator.pushReplacement( 
+                      //     context, 
+                      //     MaterialPageRoute( 
+                      //         builder: (context) => LoginScreen()
+                      //         )
+                      //         ); 
                     }, 
                     child: Text("Create Account"))) 
           ], 
